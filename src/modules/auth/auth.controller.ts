@@ -9,8 +9,8 @@ const signupUser = async (req: Request, res: Response) => {
     sendResponse(res, {
       statusCode: 201,
       success: true,
-      message: "Signed up successfully",
-      data: result,
+      message: "User registered successfully",
+      data: result.rows[0],
     });
   } catch (error: any) {
     sendResponse(res, {
@@ -19,4 +19,35 @@ const signupUser = async (req: Request, res: Response) => {
       message: error.message,
     });
   }
+};
+
+const loginUser = async (req: Request, res: Response) => {
+  try {
+    const result = await authService.loginUserIntoDB(req.body);
+
+    // const { refreshToken } = result;
+    // res.cookie("refreshToken", refreshToken, {
+    //   secure: false, // in production => true
+    //   httpOnly: true,
+    //   sameSite: "lax",
+    // });
+
+    sendResponse(res, {
+      statusCode: 200,
+      success: true,
+      message: "Login successful",
+      data: result.data,
+    });
+  } catch (error: any) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+      error: error,
+    });
+  }
+};
+
+export const authController = {
+  signupUser,
+  loginUser,
 };
