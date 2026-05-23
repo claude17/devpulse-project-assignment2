@@ -1,6 +1,9 @@
 import express, { type Application, type Request, type Response } from "express";
 import { authRoute } from "./modules/auth/auth.route";
 import { issuesRoute } from "./modules/issues/issues.route";
+import cors from "cors";
+import logger from "./middleware/logger";
+
 const app: Application = express();
 
 app.use(express.json());
@@ -10,11 +13,17 @@ app.use(
     extended: true,
   }),
 );
+app.use(logger);
+
+const corsOptions = {
+  origin: "http://localhost:7000",
+};
+app.use(cors(corsOptions));
 
 app.get("/", (req: Request, res: Response) => {
   res.status(200).json({
-    message: "devpulse express Server",
-    author: "devpulse",
+    message: "devpulse express server",
+    author: "devpulse-author",
   });
 });
 
