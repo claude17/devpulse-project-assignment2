@@ -6,8 +6,4 @@ export interface IIssue {
   reporter_id?: number;
 }
 
-export interface IGetAllIssuesQuery {
-  sort?: "newest" | "oldest";
-  type?: "bug" | "feature_request";
-  status?: "open" | "in_progress" | "resolved";
-}
+export interface IUpdateIssue extends Omit<IIssue, "reporter_id"> {}
