@@ -2,7 +2,7 @@
 
 A minimal issue-tracking API built with Node.js, TypeScript, Express and PostgreSQL.
 
-Live URL: N/A (not deployed)
+Live URL: https://devpulse-project.vercel.app/
 
 ## Features
 
