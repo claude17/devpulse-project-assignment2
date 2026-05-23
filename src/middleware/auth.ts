@@ -29,9 +29,9 @@ const auth = (...roles: ROLES[]) => {
 
       if (userData.rows.length === 0) {
         return sendResponse(res, {
-          statusCode: 404,
+          statusCode: 401,
           success: false,
-          message: "User not found!",
+          message: "User not found. You must login!",
         });
       }
 
